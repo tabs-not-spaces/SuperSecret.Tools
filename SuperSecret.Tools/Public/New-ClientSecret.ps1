@@ -1,3 +1,6 @@
+<#
+.EXTERNALHELP SuperSecret.Tools-help.xml
+#>
 function New-ClientSecret {
     [cmdletbinding()]
     param (

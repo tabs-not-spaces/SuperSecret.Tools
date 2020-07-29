@@ -1,3 +1,6 @@
+<#
+.EXTERNALHELP SuperSecret.Tools-help.xml
+#>
 function ConvertFrom-SecureSecret {
     [cmdletBinding()]
     param (
