@@ -1,2 +1,2 @@
 {{NewVersion}}
-  - Initial release
+  - Module is now cross platform. (https://stackoverflow.com/questions/60404847/are-you-able-to-use-ptrtostringauto-to-decrypt-a-secure-string-in-powershell-7-o)

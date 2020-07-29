@@ -10,7 +10,8 @@ param (
 try {
     #region Generate a new version number
     $moduleName = Split-Path -Path $modulePath -Leaf
-    [Version]$exVer = Find-Module -Name $moduleName -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Version
+    $PreviousVersion = Find-Module -Name $moduleName -ErrorAction SilentlyContinue | Select-Object *
+    [Version]$exVer = $PreviousVersion ? $PreviousVersion.Version : $null
     if ($buildLocal) {
         $rev = ((Get-ChildItem -Path "$PSScriptRoot\bin\release\" -ErrorAction SilentlyContinue).Name | Measure-Object -Maximum | Select-Object -ExpandProperty Maximum) + 1
         $newVersion = New-Object -TypeName Version -ArgumentList 1, 0, 0, $rev
@@ -26,7 +27,13 @@ try {
         }
     }
     $releaseNotes = (Get-Content ".\$moduleName\ReleaseNotes.txt" -Raw -ErrorAction SilentlyContinue).Replace("{{NewVersion}}", $newVersion)
-    $releaseNotes = $exVer ? $releaseNotes.Replace("{{LastVersion}}", "$($exVer.ToString())") : $releaseNotes.Replace("{{LastVersion}}", "")
+    if ($PreviousVersion) {
+        $releaseNotes = @"
+$releaseNotes
+
+$($previousVersion.releaseNotes)
+"@
+    }
     #endregion
 
     #region Build out the release

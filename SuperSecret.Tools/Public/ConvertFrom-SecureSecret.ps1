@@ -7,5 +7,5 @@ function ConvertFrom-SecureSecret {
         [parameter(Mandatory = $true, ValueFromPipeline)]
         [SecureString]$SecureString
     )
-    [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR(($SecureString)))
+    [Runtime.InteropServices.Marshal]::PtrToStringBSTR([Runtime.InteropServices.Marshal]::SecureStringToBSTR($SecureString))
 }
