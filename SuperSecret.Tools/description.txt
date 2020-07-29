@@ -1,0 +1,1 @@
+New-AzADAppCredential doesn't automatically generate client secrets like the old cmdlet does, so I built this to quickly generate similar strength "secrets".
