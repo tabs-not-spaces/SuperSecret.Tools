@@ -4,7 +4,7 @@ trigger:
       - master
   paths:
     include:
-      - /FU.WhyAmIBlocked/ReleaseNotes.txt
+      - /SuperSecret.Tools/ReleaseNotes.txt
     exclude:
       - /.gitignore
       - /readme.md
