@@ -30,7 +30,12 @@ try {
     #endregion
 
     #region Build out the release
-    $relPath = "$PSScriptRoot\bin\release\$rev\$moduleName"
+    if ($buildLocal) {
+        $relPath = "$PSScriptRoot\bin\release\$rev\$moduleName"
+    }
+    else {
+        $relPath = "$PSScriptRoot\bin\release\$moduleName"
+    }
     "Version is $newVersion"
     "Module Path is $modulePath"
     "Module Name is $moduleName"
